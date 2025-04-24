@@ -1,0 +1,30 @@
+.customization {
+  padding: 1rem;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  border-radius: 0.5rem;
+}
+.customization h3, .customization h4 {
+  margin-bottom: 1rem;
+}
+.customization .theme-buttons button,
+.customization .color-options button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.customization .theme-buttons button.active {
+  font-weight: bold;
+  border: 2px solid var(--accent-color);
+}
+.customization .color-options button {
+  width: 40px;
+  height: 40px;
+  border: 2px solid transparent;
+}
+.customization .color-options button.selected {
+  border-color: var(--accent-color);
+}/*# sourceMappingURL=CustomizationPanel.css.map */
