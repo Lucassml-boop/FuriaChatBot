@@ -16,6 +16,15 @@ const ChatOptions: React.FC<ChatOptionsProps> = ({ onSelect }) => {
         <li><button onClick={() => onSelect('3')}>3. Vezes que foi campeão</button></li>
         <li><button onClick={() => onSelect('4')}>4. História</button></li>
         <li><button onClick={() => onSelect('5')}>5. Curiosidades</button></li>
+        <li>
+          <a
+            href="https://wa.me/5511999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <button>6. Atendimento via WhatsApp</button>
+          </a>
+        </li>
       </ul>
     </div>
   );

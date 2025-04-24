@@ -1,24 +1,28 @@
 import './styles/App.scss';
 import Chat from './components/Chat/Chat';
+import Sidebar from './components/SideBar/SideBar';
 
 import logo from './assets/logo.png';
-
 
 function App() {
   return (
     <div className="app">
-      <header className="app_header">
-        <img src={logo} alt="FURIA Logo" className="app_logo" />
-        <h1>FURIA Conversational Experience</h1>
-      </header>
+      <Sidebar />
 
-      <main className="app_main">
-        <Chat />
-      </main>
+      <div className="app_content">
+        <header className="app_header">
+          <img src={logo} alt="FURIA Logo" className="app_logo" />
+          <h1>FURIA Conversational Experience</h1>
+        </header>
 
-      <footer className="app_footer">
-        <p>Made with ❤️ for FURIA fan</p>
-      </footer>
+        <main className="app_main">
+          <Chat />
+        </main>
+
+        <footer className="app_footer">
+          <p>Made with ❤️ for FURIA fan</p>
+        </footer>
+      </div>
     </div>
   );
 }

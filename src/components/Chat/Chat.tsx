@@ -1,10 +1,10 @@
-import { useState, useEffect, FormEvent } from 'react';
+import { useState, useEffect, FormEvent, useRef } from 'react';
 import ChatOptions from './ChatOptions';
 import '../../styles/Chat.scss';
 
 interface Message {
   sender: 'user' | 'bot';
-  text: string;
+  text: string | JSX.Element;
 }
 
 interface UserInfo {
@@ -21,9 +21,17 @@ const Chat = () => {
   const [step, setStep] = useState<Step>('email');
   const [userInfo, setUserInfo] = useState<UserInfo>({ email: '', nome: '', numero: '' });
 
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
   useEffect(() => {
     setMessages([{ sender: 'bot', text: 'Olá! Vamos começar com o seu cadastro. Qual seu email?' }]);
   }, []);
+
+  useEffect(() => {
+    if (bottomRef.current) {
+      bottomRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   const validateEmail = (email: string): boolean => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -76,22 +84,20 @@ const Chat = () => {
     }
   };
 
-  const handleOptionSelect = (option: string) => {
-    const userMessage: Message = { sender: 'user', text: option };
-    setMessages(prev => [...prev, userMessage]);
-
-    setTimeout(() => {
-      const botReply: Message = { sender: 'bot', text: generateBotResponse(option) };
-      setMessages(prev => [...prev, botReply]);
-    }, 500);
-  };
-
-  const generateBotResponse = (option: string): string => {
+  const generateBotResponse = (option: string): string | JSX.Element => {
     switch (option) {
       case '1':
         return 'Os jogadores atuais são: KSCERATO, yuurih, chelo, arT e FalleN.';
       case '2':
-        return 'Os próximos jogos serão na próxima semana. Fique ligado no site oficial!';
+        return (
+          <>
+            Os próximos jogos estão próximos. Fique ligado no{' '}
+            <a href="https://www.instagram.com/furiagg/" target="_blank" rel="noopener noreferrer">
+              site oficial
+            </a>
+            !
+          </>
+        );
       case '3':
         return 'A FURIA foi campeã de diversos torneios nacionais e internacionais!';
       case '4':
@@ -108,14 +114,19 @@ const Chat = () => {
       <div className="chat_messages">
         {messages.map((msg, index) => (
           <p key={index} className={msg.sender === 'bot' ? 'chat_bot' : 'chat_user'}>
-            {msg.text.split('\n').map((line, i) => (
-              <span key={i}>
-                {line}
-                <br />
-              </span>
-            ))}
+            {typeof msg.text === 'string' ? (
+              msg.text.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  <br />
+                </span>
+              ))
+            ) : (
+              msg.text
+            )}
           </p>
         ))}
+        <div ref={bottomRef} />
       </div>
 
       {step !== 'chat' && (
@@ -130,7 +141,10 @@ const Chat = () => {
         </form>
       )}
 
-      {step === 'chat' && <ChatOptions onSelect={handleOptionSelect} />}
+      {step === 'chat' && <ChatOptions onSelect={(option) => {
+        const botResponse = generateBotResponse(option);
+        setMessages(prev => [...prev, { sender: 'bot', text: botResponse }]);
+      }} />}
     </div>
   );
 };

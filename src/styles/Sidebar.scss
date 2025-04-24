@@ -1,0 +1,37 @@
+@use './variables' as vars;
+
+.sidebar {
+  background-color: vars.$black;
+  width: 60px;
+  height: 100vh;
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  left: 0;
+  top: 0;
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+
+  &_nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    button {
+      background: none;
+      border: none;
+      color: #a6a6a6;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      
+
+      &:hover {
+        color: vars.$purple;
+      }
+    }
+  }
+}
