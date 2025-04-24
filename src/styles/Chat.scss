@@ -18,6 +18,8 @@
     color: vars.$white;
     max-height: 300px;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
   }
 
   &_bot {
@@ -26,6 +28,17 @@
     border-radius: 1rem;
     margin-bottom: 0.5rem;
     display: inline-block;
+    align-self: flex-start;
+  }
+
+  &_user {
+    background-color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    align-self: flex-end;
+    text-align: right;
   }
 
   &_input {
@@ -51,3 +64,34 @@
     }
   }
 }
+.chat_options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      margin: 0.25rem 0;
+
+      button {
+        width: 100%;
+        padding: 0.75rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        background-color: #444;
+        color: #fff;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+          background-color: #666;
+        }
+      }
+    }
+  }
+}
+
