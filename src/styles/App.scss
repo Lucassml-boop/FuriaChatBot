@@ -1,0 +1,31 @@
+@use './variables' as vars;
+
+.app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: vars.$black;
+  color: vars.$white;
+
+  &_header,
+  &_footer {
+    background-color: vars.$purple;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  &_logo {
+    height: 50px;
+    margin-bottom: 0.5rem;
+    background-color: vars.$purple;
+  }
+
+  &_main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+  }
+}
