@@ -1,20 +1,19 @@
 @use './variables' as vars;
 
 .sidebar {
-  background-color: vars.$black;
+  background-color: vars.$gray;
   width: 60px;
   height: 100vh;
   padding: 1rem 0;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 1.5rem;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
   position: fixed;
   left: 0;
-  top: 0;
-  border-top-right-radius: 1rem;
-  border-bottom-right-radius: 1rem;
+  top: 0px;
+  z-index: 11;
 
   &_nav {
     display: flex;

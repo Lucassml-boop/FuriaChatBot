@@ -15,16 +15,33 @@ interface UserInfo {
 
 type Step = 'email' | 'nome' | 'numero' | 'chat';
 
+const validateEmail = (email: string): boolean => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+};
+
+
+const validatePhone = (phone: string): boolean => {
+  const phoneRegex = /^\(?\d{2}\)?[\s.-]?\d{4,5}[\s.-]?\d{4}$/;
+  return phoneRegex.test(phone);
+};
+
 const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [step, setStep] = useState<Step>('email');
   const [userInfo, setUserInfo] = useState<UserInfo>({ email: '', nome: '', numero: '' });
+  const [isLoading, setIsLoading] = useState(false); 
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    setMessages([{ sender: 'bot', text: 'Olá! Vamos começar com o seu cadastro. Qual seu email?' }]);
+   
+    setIsLoading(true);
+    setTimeout(() => {
+      setMessages([{ sender: 'bot', text: 'Olá! Vamos começar com o seu cadastro. Qual seu email?' }]);
+      setIsLoading(false); 
+    }, 2000);
   }, []);
 
   useEffect(() => {
@@ -33,14 +50,13 @@ const Chat = () => {
     }
   }, [messages]);
 
-  const validateEmail = (email: string): boolean => {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return regex.test(email);
-  };
-
-  const validatePhone = (phone: string): boolean => {
-    const regex = /^\(?\d{2}\)?[\s.-]?\d{4,5}[\s.-]?\d{4}$/;
-    return regex.test(phone);
+  const handleOptionSelect = (option: string) => {
+    setIsLoading(true);
+    setTimeout(() => {
+      const botResponse = generateBotResponse(option);
+      setMessages((prev) => [...prev, { sender: 'bot', text: botResponse }]);
+      setIsLoading(false); 
+    }, 2000); 
   };
 
   const handleSubmit = (e: FormEvent) => {
@@ -49,37 +65,62 @@ const Chat = () => {
     if (!value) return;
 
     setInput('');
-    setMessages(prev => [...prev, { sender: 'user', text: value }]);
+    setMessages((prev) => [...prev, { sender: 'user', text: value }]);
+
+    if (step === 'chat') {
+      handleOptionSelect(value); // Chama a função de carregamento para opções válidas ou inválidas
+      return;
+    }
 
     switch (step) {
       case 'email':
         if (!validateEmail(value)) {
-          setMessages(prev => [...prev, { sender: 'bot', text: 'Email inválido. Tente novamente.' }]);
+          setIsLoading(true); 
+          setTimeout(() => {
+            setMessages((prev) => [...prev, { sender: 'bot', text: 'Email inválido. Tente novamente.' }]);
+            setIsLoading(false); 
+          }, 2000);
           return;
         }
-        setUserInfo(prev => ({ ...prev, email: value }));
-        setMessages(prev => [...prev, { sender: 'bot', text: 'Ótimo! Agora informe seu nome completo:' }]);
-        setStep('nome');
+        setUserInfo((prev) => ({ ...prev, email: value }));
+        setIsLoading(true);
+        setTimeout(() => {
+          setMessages((prev) => [...prev, { sender: 'bot', text: 'Ótimo! Agora informe seu nome completo:' }]);
+          setStep('nome');
+          setIsLoading(false);
+        }, 2000);
         break;
 
       case 'nome':
-        setUserInfo(prev => ({ ...prev, nome: value }));
-        setMessages(prev => [...prev, { sender: 'bot', text: 'Perfeito! Agora me diga seu número de telefone:' }]);
-        setStep('numero');
+        setUserInfo((prev) => ({ ...prev, nome: value }));
+        setIsLoading(true);
+        setTimeout(() => {
+          setMessages((prev) => [...prev, { sender: 'bot', text: 'Perfeito! Agora me diga seu número de telefone:' }]);
+          setStep('numero');
+          setIsLoading(false);
+        }, 2000);
         break;
 
       case 'numero':
         if (!validatePhone(value)) {
-          setMessages(prev => [...prev, { sender: 'bot', text: 'Número inválido. Exemplo válido: (11) 91234-5678' }]);
+          setIsLoading(true);
+          setTimeout(() => {
+            setMessages((prev) => [...prev, { sender: 'bot', text: 'Número inválido. Exemplo válido: (11) 91234-5678' }]);
+            setIsLoading(false); 
+          }, 2000);
           return;
         }
         const updatedInfo = { ...userInfo, numero: value };
         setUserInfo(updatedInfo);
-        setMessages(prev => [
-          ...prev,
-          { sender: 'bot', text: `Cadastro completo! Bem-vindo, ${updatedInfo.nome}!` }
-        ]);
-        setStep('chat');
+        setIsLoading(true);
+        setTimeout(() => {
+          setMessages((prev) => [
+            ...prev,
+            { sender: 'bot', text: `Cadastro completo! Bem-vindo, ${updatedInfo.nome}!` },
+          ]);
+          setStep('chat');
+          setIsLoading(false);
+        }, 2000);
         break;
     }
   };
@@ -126,6 +167,13 @@ const Chat = () => {
             )}
           </p>
         ))}
+        {isLoading && (
+          <p className="chat_bot loading">
+            <span></span>
+            <span></span>
+            <span></span>
+          </p>
+        )}
         <div ref={bottomRef} />
       </div>
 
@@ -136,15 +184,21 @@ const Chat = () => {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Digite aqui..."
+            disabled={isLoading} // Desabilita o input enquanto está carregando
           />
-          <button type="submit">Enviar</button>
+          <button type="submit" disabled={isLoading}>
+            Enviar
+          </button>
         </form>
       )}
 
-      {step === 'chat' && <ChatOptions onSelect={(option) => {
-        const botResponse = generateBotResponse(option);
-        setMessages(prev => [...prev, { sender: 'bot', text: botResponse }]);
-      }} />}
+      {step === 'chat' && (
+        <ChatOptions
+          onSelect={(option) => {
+            handleOptionSelect(option); // Chama a função ao selecionar uma opção
+          }}
+        />
+      )}
     </div>
   );
 };

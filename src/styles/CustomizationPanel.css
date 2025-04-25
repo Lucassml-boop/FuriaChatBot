@@ -3,6 +3,12 @@
   background-color: var(--bg-color);
   color: var(--text-color);
   border-radius: 0.5rem;
+  width: 48%;
+  position: absolute;
+  left: 4%;
+  top: 43%;
+  transform: translateY(-40%);
+  height: 95%;
 }
 .customization h3, .customization h4 {
   margin-bottom: 1rem;
@@ -26,5 +32,49 @@
   border: 2px solid transparent;
 }
 .customization .color-options button.selected {
+  border-color: var(--accent-color);
+}
+
+.customization-itens {
+  position: relative;
+  margin-left: auto;
+  width: 80%;
+  text-align: left;
+  top: 22.5%;
+  right: 53px;
+}
+.customization-itens h3 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.customization-itens h4 {
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+}
+.customization-itens .theme-buttons button,
+.customization-itens .color-options button {
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.customization-itens .theme-buttons button.active {
+  font-weight: bold;
+  border: 2px solid var(--accent-color);
+}
+.customization-itens .color-options button {
+  width: 40px;
+  height: 40px;
+  border: 2px solid transparent;
+}
+.customization-itens .bot-options button {
+  width: 60px;
+  height: 40px;
+  border: 2px solid transparent;
+}
+.customization-itens .color-options button.selected {
   border-color: var(--accent-color);
 }/*# sourceMappingURL=CustomizationPanel.css.map */
