@@ -18,7 +18,7 @@ const ChatOptions: React.FC<ChatOptionsProps> = ({ onSelect }) => {
         <li><button onClick={() => onSelect('5')}>5. Curiosidades</button></li>
         <li>
           <a
-            href="https://wa.me/5511999999999"
+            href="https://wa.me/5511993404466"
             target="_blank"
             rel="noopener noreferrer"
           >
