@@ -11,9 +11,6 @@
 - [🛠️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
 - [🚀 Instalação](#-instalação)
 - [📜 Scripts Disponíveis](#-scripts-disponíveis)
-- [📂 Estrutura do Projeto](#-estrutura-do-projeto)
-- [🤝 Contribuição](#-contribuição)
-- [🪪 Licença](#-licença)
 
 ---
 
