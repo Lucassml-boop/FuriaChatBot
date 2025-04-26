@@ -13,7 +13,7 @@
   gap: 1rem;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   position: fixed;
-  bottom: 45px;
+  bottom: 36px;
   right: 8%;
 
   .chat_bot {
@@ -63,7 +63,7 @@
     background-color: var(--bg-color); 
     border-radius: 0.5rem;
     padding: 1rem;
-    color: var(--bg-color); 
+    color: #000; 
     max-height: calc(100% - 100px);
     overflow-y: auto;
     display: flex;
@@ -167,7 +167,7 @@
         border: none;
         border-radius: 0.5rem;
         background-color: var(--accent-color);
-        color: var(--text-color); 
+        color: #000; 
         cursor: pointer;
         transition: background-color 0.2s ease;
 

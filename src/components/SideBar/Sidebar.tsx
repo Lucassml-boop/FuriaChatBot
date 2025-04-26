@@ -1,9 +1,7 @@
 import { Home, MessageCircle, Settings } from 'lucide-react';
 import '../../styles/Sidebar.scss';
-import { useTheme } from '../context/ThemeContext';
 
 const Sidebar = () => {
-  const { setTheme } = useTheme();
 
   return (
     <aside className="sidebar">

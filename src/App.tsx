@@ -8,7 +8,6 @@ import logo from './assets/logo.png';
 
 function App() {
   return (
-    <ThemeProvider>
       <div className="app">
         <Sidebar />
 
@@ -21,10 +20,8 @@ function App() {
             <Chat />
             <CustomizationPanel />
           </main>
-
         </div>
       </div>
-    </ThemeProvider>
   );
 }
 
