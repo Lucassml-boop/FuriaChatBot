@@ -1,6 +1,7 @@
 import { useState, useEffect, FormEvent, useRef } from 'react';
 import ChatOptions from './ChatOptions';
 import '../../styles/Chat.scss';
+import { JSX } from 'react';
 
 interface Message {
   sender: 'user' | 'bot';

@@ -2,7 +2,6 @@ import './styles/App.scss';
 import Chat from './components/Chat/Chat';
 import Sidebar from './components/SideBar/Sidebar';
 import CustomizationPanel from './components/CustomPainel/CustomizationPanel';
-import { ThemeProvider } from './components/context/ThemeContext';
 
 import logo from './assets/logo.png';
 
