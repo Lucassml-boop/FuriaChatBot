@@ -84,3 +84,43 @@ npm run preview
 
 npm run lint
 # Executa o ESLint para verificar e padronizar o código-fonte.
+```
+
+## 📂 Estrutura do Projeto
+```bash
+FuriaChatBot/
+├── src/
+│   ├── components/
+│   │   ├── Chat/
+│   │   │   ├── Chat.tsx
+│   │   │   ├── ChatOptions.tsx
+│   │   ├── CustomPainel/
+│   │   │   ├── CustomizationPanel.tsx
+│   │   ├── SideBar/
+│   │   │   ├── Sidebar.tsx
+│   │   ├── context/
+│   │   │   ├── ThemeContext.tsx
+│   ├── styles/
+│   │   ├── App.scss
+│   │   ├── Chat.scss
+│   │   ├── Sidebar.scss
+│   │   ├── CustomizationPanel.scss
+│   │   ├── variables.scss
+│   ├── App.tsx
+│   ├── main.tsx
+│   ├── vite-env.d.ts
+├── public/
+│   ├── vite.svg
+├── package.json
+├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.node.json
+├── vite.config.ts
+├── README.md
+```
+- Principais Arquivos
+- **App.tsx:** Componente principal que organiza a estrutura da aplicação.
+- **Chat.tsx:** Componente que gerencia a interação do usuário com o chatbot.
+- **CustomizationPanel.tsx:** Painel para personalização de tema e cores.
+- **ThemeContext.tsx:** Contexto para gerenciar temas e cores globais.
+- **Sidebar.tsx:** Barra lateral com botões de navegação.
