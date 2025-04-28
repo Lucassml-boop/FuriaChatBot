@@ -36,7 +36,7 @@ const CustomizationPanel = () => {
 
         <h4>Accent Color</h4>
         <div className="color-options">
-          {['#e63946', '#f1c40f', '#2ecc71', '#3498db', '#8a2be2', '#ff6f61', '#00cec9', '#fff'].map((color) => (
+          {['#e63946', '#f1c40f', '#2ecc71', '#3498db', '#8a2be2', '#ff6f61', '#00cec9', '#eeeeee'].map((color) => (
             <button
               key={color}
               style={{ backgroundColor: color }}
