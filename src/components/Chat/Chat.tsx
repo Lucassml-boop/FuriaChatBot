@@ -1,4 +1,5 @@
 import { useState, useEffect, FormEvent, useRef } from 'react';
+import { BotMessageSquare } from 'lucide-react';
 import ChatOptions from './ChatOptions';
 import '../../styles/Chat.scss';
 
@@ -153,20 +154,21 @@ const Chat = () => {
   return (
     <div className="chat">
       <div className="chat_messages">
-        {messages.map((msg, index) => (
-          <p key={index} className={msg.sender === 'bot' ? 'chat_bot' : 'chat_user'}>
-            {typeof msg.text === 'string' ? (
-              msg.text.split('\n').map((line, i) => (
-                <span key={i}>
-                  {line}
-                  <br />
-                </span>
-              ))
-            ) : (
-              msg.text
-            )}
-          </p>
-        ))}
+      {messages.map((msg, index) => (
+  <p key={index} className={msg.sender === 'bot' ? 'chat_bot' : 'chat_user'}>
+    {msg.sender === 'bot' && <BotMessageSquare size={20} className="chat_bot_icon" />}
+    {typeof msg.text === 'string' ? (
+      msg.text.split('\n').map((line, i) => (
+        <span key={i}>
+          {line}
+          <br />
+        </span>
+      ))
+    ) : (
+      msg.text
+    )}
+  </p>
+))}
         {isLoading && (
           <p className="chat_bot loading">
             <span></span>
