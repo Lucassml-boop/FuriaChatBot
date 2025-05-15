@@ -15,10 +15,19 @@
   top: 0px;
   z-index: 11;
 
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+
   &_nav {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+
+    @media (max-width: 768px) {
+      flex-direction: row;
+      gap: 1rem;
+    }
 
     button {
       background: none;

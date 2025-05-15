@@ -18,6 +18,15 @@
   right: 8%;
   justify-content: space-between;
 
+  @media (max-width: 768px) {
+    max-width: 50%;
+    height: 60%;
+    bottom: 20px;
+    right: 0;
+    padding: 1rem;
+    margin: 0 22.5% 2% 0;
+  }
+
   .chat_bot {
   align-items: center;
   gap: 0.5rem;
@@ -85,14 +94,18 @@
     flex-direction: column;
     padding-left: 30px;
 
+    @media (max-width: 768px) {
+      max-height: calc(100% - 120px);
+    }
+
     a {
-      color: var(--text-color); 
+      color: #000; 
       text-decoration: none;
       font-weight: bold;
       transition: color 0.2s ease;
 
       &:hover {
-        color: color.adjust(vars.$black, $lightness: 10%);
+        color: color.adjust(vars.$purple, $lightness: 10%);
         text-decoration: underline;
       }
     }
@@ -115,8 +128,10 @@
       background-color: color.scale(vars.$purple, $lightness: 20%);
     }
 
-    scrollbar-width: thin;
-    scrollbar-color: var(--accent-color) color.adjust(vars.$black, $lightness: 5%);
+    & {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-color) color.adjust(vars.$black, $lightness: 5%);
+    }
   }
 
   &_bot {
@@ -150,6 +165,11 @@
       border: none;
       font-size: 1rem;
       background: #e7e4e4;
+
+      @media (max-width: 768px) {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+      }
     }
 
     button {
@@ -160,6 +180,11 @@
       border-radius: 0.5rem;
       cursor: pointer;
       font-weight: bold;
+
+      @media (max-width: 768px) {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
     }
   }
 }

@@ -11,7 +11,100 @@
     height: 95%;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 
+    @media (max-width: 768px) {
+      width: 35px; 
+      height: 35px;
+      top: 70px;
+      right: 10px;
+      left: auto;
+      transform: none;
+      border-radius: 50%; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
 
+      h3, h4, .theme-buttons, .color-options {
+      display: none; 
+      }
+    }
+
+
+    &.open {
+      width: auto;
+      height: auto;
+      border-radius: 0.5rem;
+      padding: 1rem;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: var(--bg-color);
+
+      h3, h4, .theme-buttons, .color-options {
+        display: block; 
+      }
+    }
+
+    @media (min-width: 769px) {
+      .customization-button {
+        display: none;
+        
+      }
+
+      .customization-itens {
+        display: block; 
+      }
+    }
+
+    .customization-button {
+      font-size: 1.5rem;
+      color: var(--text-color);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      @media (min-width: 769px) {
+        display: none; 
+      }
+    }
+  
+  
+    .customization-itens {
+      display: none;
+  
+      &.open {
+        display: block;
+      }
+  
+      h3, h4 {
+        margin-bottom: 1rem;
+      }
+  
+      .theme-buttons button,
+      .color-options button {
+        margin: 0.5rem;
+        padding: 0.5rem 1rem;
+        border: none;
+        border-radius: 0.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+      }
+  
+      .theme-buttons button.active {
+        font-weight: bold;
+        border: 2px solid var(--accent-color);
+      }
+  
+      .color-options button {
+        width: 40px;
+        height: 40px;
+        border: 2px solid transparent;
+      }
+  
+      .color-options button.selected {
+        border-color: var(--accent-color);
+      }
+    }
   
     h3, h4 {
       margin-bottom: 1rem;
@@ -25,6 +118,10 @@
       border-radius: 0.5rem;
       cursor: pointer;
       transition: background-color 0.2s ease;
+
+      @media (max-width: 768px) {
+        padding: 0.4rem 0.8rem;
+      }
     }
 
     

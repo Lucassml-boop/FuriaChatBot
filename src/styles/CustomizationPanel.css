@@ -9,6 +9,88 @@
   top: 43%;
   transform: translateY(-40%);
   height: 95%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .customization {
+    width: 35px;
+    height: 35px;
+    top: 70px;
+    right: 10px;
+    left: auto;
+    transform: none;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+  .customization h3, .customization h4, .customization .theme-buttons, .customization .color-options {
+    display: none;
+  }
+}
+.customization.open {
+  width: auto;
+  height: auto;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: var(--bg-color);
+}
+.customization.open h3, .customization.open h4, .customization.open .theme-buttons, .customization.open .color-options {
+  display: block;
+}
+@media (min-width: 769px) {
+  .customization .customization-button {
+    display: none;
+  }
+  .customization .customization-itens {
+    display: block;
+  }
+}
+.customization .customization-button {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 769px) {
+  .customization .customization-button {
+    display: none;
+  }
+}
+.customization .customization-itens {
+  display: none;
+}
+.customization .customization-itens.open {
+  display: block;
+}
+.customization .customization-itens h3, .customization .customization-itens h4 {
+  margin-bottom: 1rem;
+}
+.customization .customization-itens .theme-buttons button,
+.customization .customization-itens .color-options button {
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.customization .customization-itens .theme-buttons button.active {
+  font-weight: bold;
+  border: 2px solid var(--accent-color);
+}
+.customization .customization-itens .color-options button {
+  width: 40px;
+  height: 40px;
+  border: 2px solid transparent;
+}
+.customization .customization-itens .color-options button.selected {
+  border-color: var(--accent-color);
 }
 .customization h3, .customization h4 {
   margin-bottom: 1rem;
@@ -21,6 +103,12 @@
   border-radius: 0.5rem;
   cursor: pointer;
   transition: background-color 0.2s ease;
+}
+@media (max-width: 768px) {
+  .customization .theme-buttons button,
+  .customization .color-options button {
+    padding: 0.4rem 0.8rem;
+  }
 }
 .customization .theme-buttons button.active {
   font-weight: bold;
@@ -51,7 +139,29 @@
   font-size: 1.4rem;
   margin-bottom: 0.8rem;
 }
-.customization-itens .theme-buttons button,
+.customization-itens .theme-buttons button {
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.customization-itens .theme-buttons button:first-child {
+  background-color: var(--theme-light-bg);
+  color: var(--theme-light-color);
+}
+.customization-itens .theme-buttons button:last-child {
+  background-color: var(--theme-dark-bg);
+  color: var(--theme-dark-color);
+}
+.customization-itens .theme-buttons button:hover {
+  opacity: 0.8;
+}
+.customization-itens .theme-buttons button.active {
+  border: 2px solid var(--accent-color);
+}
 .customization-itens .color-options button {
   font-size: 1rem;
   margin: 0.5rem;
@@ -70,10 +180,17 @@
   height: 40px;
   border: 2px solid transparent;
 }
-.customization-itens .bot-options button {
-  width: 60px;
+.customization-itens .color-options-bot button {
+  width: 80px;
   height: 40px;
   border: 2px solid transparent;
+  font-size: 1rem;
+  margin: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 .customization-itens .color-options button.selected {
   border-color: var(--accent-color);
