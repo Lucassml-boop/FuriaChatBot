@@ -28,18 +28,18 @@
   .customization h3, .customization h4, .customization .theme-buttons, .customization .color-options {
     display: none;
   }
-}
-.customization.open {
-  width: auto;
-  height: auto;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: var(--bg-color);
-}
-.customization.open h3, .customization.open h4, .customization.open .theme-buttons, .customization.open .color-options {
-  display: block;
+  .customization.open {
+    width: auto;
+    height: auto;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .customization.open h3, .customization.open h4, .customization.open .theme-buttons, .customization.open .color-options {
+    display: block;
+  }
 }
 @media (min-width: 769px) {
   .customization .customization-button {

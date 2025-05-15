@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import '../../styles/CustomizationPanel.scss';
 import { Sun, Moon } from 'lucide-react';
@@ -7,7 +7,7 @@ import { Settings } from 'lucide-react';
 const CustomizationPanel = () => {
   const { setTheme, setAccentColor, setBotMessageColor } = useTheme();
   const [activeTheme, setActiveTheme] = useState<'light' | 'dark'>('light');
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(window.innerWidth > 768);
 
   const handleThemeChange = (theme: 'light' | 'dark') => {
     setTheme(theme);
@@ -18,18 +18,38 @@ const CustomizationPanel = () => {
     setIsOpen(!isOpen);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        setIsOpen(true); 
+      } else {
+        setIsOpen(false); 
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className={`customization ${isOpen ? 'open' : ''}`}>
       
-      <div
-        className="customization-button"
-        onClick={togglePanel}
-        title="Abrir painel de personalização"
-      >
-        <Settings size={19} />
-      </div>
+      {window.innerWidth <= 768 && (
+        <div
+          className="customization-button"
+          onClick={togglePanel}
+          title="Abrir painel de personalização"
+        >
+          <Settings size={19} />
+        </div>
+      )}
 
-      <div className={`customization-itens ${isOpen || window.innerWidth > 768 ? 'open' : ''}`}>
+      <div className={`customization-itens ${isOpen ? 'open' : ''}`}>
         <h3>Change the colors to customize your bot</h3>
 
         <div className="theme-buttons">
